@@ -1,6 +1,19 @@
 import React from "react"
 import styled from "@emotion/styled"
 import cnn_image from "../assets/logo_cnn.png"
+import nbc_image from "../assets/logo_nbc.png"
+import wapo_image from "../assets/logo_washington post.png"
+import ap_image from "../assets/logo_ap.png"
+import fox_image from "../assets/logo_fox.png"
+
+const getImage = publisher =>
+  ({
+    "CNN.com": cnn_image,
+    "NBCNEWS.com": nbc_image,
+    "The Washington Post": wapo_image,
+    "Fox News": fox_image,
+    "Associated Press Online": ap_image
+  }[publisher])
 
 const ArticleImage = styled.div`
   background: grey;
@@ -29,6 +42,7 @@ const ArticleBottomRow = styled.div`
   flex-direction: row;
   width: 100%;
   justify-content: space-between;
+  margin-top: 10px;
 `
 
 const ArticleDate = styled.p`
@@ -47,17 +61,32 @@ const ArticleMediaImage = styled.div`
 
 const ArticleInfo = styled.div`
   padding: 0 12px;
+  flex: 1;
 `
 
 const Article = ({ image, title, url, time_stamp, publisher }) => {
+  const [time_date] = time_stamp.split(" ")
+  const [year, month, day] = time_date.split(":")
+  const options = {
+    weekday: "long",
+    year: "numeric",
+    month: "long",
+    day: "numeric"
+  }
+
+  const date = new Date(Date.UTC(year, month, day, 3, 0, 0)).toLocaleDateString(
+    "en-US",
+    options
+  )
+  const publisherImage = getImage(publisher) || cnn_image
   return (
     <ArticleWrapper href={url}>
       <ArticleImage image={image} />
       <ArticleInfo>
         <ArticleTitle>{title}</ArticleTitle>
         <ArticleBottomRow>
-          <ArticleMediaImage image={cnn_image} />
-          <ArticleDate>{time_stamp}</ArticleDate>
+          <ArticleMediaImage image={publisherImage} />
+          <ArticleDate>{date}</ArticleDate>
         </ArticleBottomRow>
       </ArticleInfo>
     </ArticleWrapper>

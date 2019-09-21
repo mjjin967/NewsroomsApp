@@ -4,6 +4,7 @@ import Article from "../components/article"
 import data from "../data/data.json"
 
 const ArticleWrapper = styled.div`
+  padding: 10px 10px;
   & > * {
     margin-bottom: 24px;
   }
