@@ -12,7 +12,8 @@ const getImage = publisher =>
     "NBCNEWS.com": nbc_image,
     "The Washington Post": wapo_image,
     "Fox News": fox_image,
-    "Associated Press Online": ap_image
+    "Associated Press Online": ap_image,
+    "The Associated Press": ap_image
   }[publisher])
 
 const ArticleImage = styled.div`
@@ -80,7 +81,7 @@ const Article = ({ image, title, url, time_stamp, publisher }) => {
   )
   const publisherImage = getImage(publisher) || cnn_image
   return (
-    <ArticleWrapper href={url}>
+    <ArticleWrapper href={url} target="_blank">
       <ArticleImage image={image} />
       <ArticleInfo>
         <ArticleTitle>{title}</ArticleTitle>
