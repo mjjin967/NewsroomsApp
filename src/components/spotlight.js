@@ -5,7 +5,8 @@ import styled from "@emotion/styled"
 const SpotlightWrapper = styled.a`
     background: #000a2b;
     background-image: url("${props => props.image}");
-    background-size: contain;
+    background-size: cover;
+    background-repeat: no-repeat;
     border-radius: 10px;
     display: inline-block;
     width: 100%;
@@ -17,8 +18,9 @@ const SpotlightWrapper = styled.a`
 
 const ArticleCount = styled.div`
   position: absolute;
-  top: 0;
+  top: 10px;
   left: 12px;
+  font-size: 30px;
 `
 
 const ArticleTitle = styled.div`
@@ -34,8 +36,6 @@ const Spotlight = ({ spotlight, id }) => {
   let filtered = Object.assign({}, ...spotlight)
   const count = spotlight.length
   const { title, image } = filtered
-  console.log("title", title)
-  console.log("image", image)
 
   return (
     <SpotlightWrapper image={image} href={`/${id}`}>
