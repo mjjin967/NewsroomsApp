@@ -1,14 +1,19 @@
 import React from "react"
+import Article from "../components/article"
 import data from "../data/data.json"
 
 const Highlight = ({ match }) => {
   const {
-    params: { highlight: id }
+    params: { highlight }
   } = match
-  const highlight = data[id]
+  const storyblocks = data[highlight]
+
   return (
     <div>
-      <h1>hello Highlight {id}</h1>
+      <h1>hello Highlight {highlight}</h1>
+      {storyblocks.map(article => (
+        <Article {...article} key={article.id} />
+      ))}
     </div>
   )
 }
