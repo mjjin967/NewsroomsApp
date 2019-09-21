@@ -1,9 +1,13 @@
 import React from "react"
+import data from "../data/data.json"
+import Spotlight from "../components/spotlight";
 
-const Home = () => (
-  <div>
-    <h1>hello world</h1>
-  </div>
-)
+const Home = () => {
+  return (
+    <div>
+      {Object.keys(data).map(spotlight => <Spotlight key={spotlight} spotlight={data[spotlight]} />)}
+    </div>
+  )
+}
 
 export default Home
