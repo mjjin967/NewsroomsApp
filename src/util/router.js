@@ -6,7 +6,7 @@ import Highlights from "../screens/highlight"
 const Router = () => (
   <BrowserRouter>
     <Switch>
-      <PublicRoute exact path="/home" component={Home} />
+      <PublicRoute exact path="/" component={Home} />
       <PublicRoute path="/:highlight" component={Highlights} />
       <PublicRoute component={NoMatch} />
     </Switch>
@@ -20,7 +20,7 @@ const PublicRoute = ({ component: Component, otherProps, ...rest }) => (
 const NoMatch = () => (
   <Redirect
     to={{
-      pathname: "/home"
+      pathname: "/"
     }}
   />
 )
